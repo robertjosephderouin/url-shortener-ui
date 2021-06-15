@@ -2,15 +2,19 @@ describe('Dashboard', () => {
   
     beforeEach(() => {
         const baseURL = 'http://localhost:3001/api/v1/urls';
-      cy.intercept('GET', `${baseURL}`, {
-        urls: [{
-                id: 1,
-                long_url: 'https://images.unsplash.com/photo-1531898418865-480b7090470f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80',
-                short_url: 'http://localhost:3001/useshorturl/1',
-                title: 'Awesome photo'
-              }  
-            ]
-        })
+        const urls = [{
+            id: 1,
+            long_url: 'https://images.unsplash.com/photo-1531898418865-480b7090470f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80',
+            short_url: 'http://localhost:3001/useshorturl/1',
+            title: 'Awesome photo'
+        }  
+        ]
+        cy.intercept('GET', `${baseURL}`, {
+        urls
+        });
+        cy.intercept('POST', `${baseURL}`, () => {
+            urls.push({id: 2, long_url:'Sample URL', short_url:'http://localhost:3001/useshorturl/2', title:'Sample Title'})
+        });
     });
 
     it('When a user visits the page, they can view the page title and the existing shortened URLs', () => {
