@@ -9,19 +9,8 @@ describe('Dashboard', () => {
             title: 'Awesome photo'
         }  
         ]
-        cy.intercept(baseURL, (req) => {
-            if(req.method === 'GET'){
-                return urls
-            }else if(req.method === 'POST'){
-                urls.push(req.body)
-            }
-        })
-        // cy.intercept('GET', `${baseURL}`, {
-        // urls
-        // });
-        // cy.intercept('POST', `${baseURL}`, () => {
-        //     urls.push({id: 2, long_url:'Sample URL', short_url:'http://localhost:3001/useshorturl/2', title:'Sample Title'})
-        // });
+        cy.intercept('POST', baseURL, {statusCode: 201, body:{id:2, long_url: "Sample URL", short_url: "http://localhost:3001/useshorturl/2", title:"Sample Title"}})
+        cy.intercept(baseURL, {urls})
     });
 
     it('When a user visits the page, they can view the page title and the existing shortened URLs', () => {
