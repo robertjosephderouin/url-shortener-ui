@@ -32,6 +32,8 @@ describe('Dashboard', () => {
     it('When a user fills out the form, the information is reflected in the input fields', () => {
 
     cy.visit('http://localhost:3000/')
+        cy.get('[placeholder="Title..."]').should('have.value', '')
+        cy.get('[placeholder="URL to Shorten..."]').should('have.value', '')
         cy.get('[placeholder="Title..."]').type('Sample Title')
         cy.get('[placeholder="Title..."]').should('have.value', 'Sample Title')
         cy.get('[placeholder="URL to Shorten..."]').type('Sample URL')
