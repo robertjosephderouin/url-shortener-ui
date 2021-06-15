@@ -39,5 +39,18 @@ describe('Dashboard', () => {
         cy.get('[placeholder="URL to Shorten..."]').type('Sample URL')
         cy.get('[placeholder="URL to Shorten..."]').should('have.value', 'Sample URL')
   });
+
+  it('When a user fills out and submits the form, the new shortened URL is rendered', () => {
+
+    cy.visit('http://localhost:3000/')
+        cy.get('[placeholder="Title..."]').should('have.value', '')
+        cy.get('[placeholder="URL to Shorten..."]').should('have.value', '')
+        cy.get('[placeholder="Title..."]').type('Sample Title')
+        cy.get('[placeholder="Title..."]').should('have.value', 'Sample Title')
+        cy.get('[placeholder="URL to Shorten..."]').type('Sample URL')
+        cy.get('[placeholder="URL to Shorten..."]').should('have.value', 'Sample URL')
+        cy.get('button').click()
+        cy.get('h3').contains('Sample Title')
+  });
   
 });
