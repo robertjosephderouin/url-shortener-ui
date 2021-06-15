@@ -15,6 +15,7 @@ class UrlForm extends Component {
   }
 
   handleSubmit = e => {
+    console.log(e);
     e.preventDefault();
     this.clearInputs();
   }
@@ -38,7 +39,7 @@ class UrlForm extends Component {
           type='text'
           placeholder='URL to Shorten...'
           name='title'
-          value={this.state.title}
+          value={this.state.urlToShorten}
           onChange={e => this.handleNameChange(e)}
         />
 
