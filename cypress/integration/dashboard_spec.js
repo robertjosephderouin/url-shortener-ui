@@ -34,6 +34,8 @@ describe('Dashboard', () => {
     cy.visit('http://localhost:3000/')
         cy.get('[placeholder="Title..."]').type('Sample Title')
         cy.get('[placeholder="Title..."]').should('have.value', 'Sample Title')
+        cy.get('[placeholder="URL to Shorten..."]').type('Sample URL')
+        cy.get('[placeholder="URL to Shorten..."]').should('have.value', 'Sample URL')
   });
   
 });
