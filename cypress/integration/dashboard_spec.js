@@ -23,8 +23,8 @@ describe('Dashboard', () => {
     it('When a user visits the page, they can view the Form with the proper inputs', () => {
   
         cy.visit('http://localhost:3000/')
-            cy.get('[placeholder="Title..."]')
-            cy.get('[placeholder="URL to Shorten..."]')
+            cy.get('[placeholder="Title..."]').should('have.value', '')
+            cy.get('[placeholder="URL to Shorten..."]').should('have.value', '')
             cy.get('button').contains('Shorten Please!')
       });
 
